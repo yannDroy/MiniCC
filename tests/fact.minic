@@ -1,0 +1,32 @@
+int fact(int n)
+{
+    int i;
+    int p;
+    
+    p = 1;
+    for(i = 1 ; i <= n ; i++)
+    {
+        p *= i;
+    }
+
+    return p;
+}
+
+main()
+{
+    int n;
+    int p;
+
+    printf("Entrez n : ");
+    scanf("%i",n);
+    
+    if(n > 0)
+    {
+        p = fact(n);
+        printf("%i! = %i\n",n,p);
+    }
+    else
+    {
+        printf("La factorielle n'est pas definie pour les entiers negatifs\n");
+    }
+}

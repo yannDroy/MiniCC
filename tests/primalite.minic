@@ -1,0 +1,47 @@
+bool premier (int n)
+{
+
+    int i;
+
+    if(n < 0)
+    {
+        return false;
+    }
+    
+    if((n == 0) || (n == 1))
+    {
+        return false;
+    }
+
+    if(n == 2)
+    {
+        return true;
+    }
+    
+    for(i = 3 ; i < n ; i++)
+    {
+        if((n % i) == 0)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+main()
+{
+    int n;
+    
+    printf("Entrez n : ");
+    scanf("%i",n);
+
+    if(premier(n))
+    {
+        printf("%i est premier\n", n);
+    }
+    else
+    {
+        printf("%i n'est pas premier\n", n);
+    }
+}

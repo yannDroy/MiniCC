@@ -1,0 +1,32 @@
+main()
+{
+    int x;
+    float pi;
+
+    printf("x  : int\n");
+    printf("pi : float\n\n");
+
+    x = -100;
+    pi = 3.14159265358;
+
+    printf("x = %i   |x| = %i\n\n", x, abs(x));
+    printf("pi = %f   |pi| = %f\n\n", pi, fabs(pi));
+
+    x = abs(x);
+    printf("x = %i   (float)x = %f\n\n", x, itof(x));
+    printf("pi = %f   (int)pi = %i\n\n", pi, ftoi(pi));
+    printf("floor(pi) = %f   ceil(pi) = %f\n\n", floor(pi), ceil(pi));
+
+    printf("%i^3 = %i  -5^7 = %f\n\n", x, ftoi(pow(itof(x), 3)), pow(-5.0, 7));
+
+    printf("e = %f   e^2 = %f   e^3 = %f\n\n", exp(1.0), exp(2.0), exp(3.0));
+
+    printf("sin(pi) = %f   cos(pi) = %f   tan(pi) = %f\n\n", sin(pi), cos(pi), tan(pi));
+
+    printf("asin(sqrt(2)/2) = %f   acos(-1.0) = %f   atan(0.0) = %f\n\n", asin(sqrt(2.0) / 2.0), acos(-1.0), atan(0.0));
+
+    printf("log(1) = %f   log10(100) = %f\n\n", log(1.0), log10(100.0));
+
+    x = -10;
+    printf("x = %i   -x = %i  -(-x) = %i\n\n", x, -x, -(-x));
+}

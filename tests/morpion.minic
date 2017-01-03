@@ -1,0 +1,228 @@
+typedef char array tab [3][3];
+tab plateau;
+
+typedef struct position {
+    int absc;
+    int ord;
+};
+typedef position array t_pos[9];
+t_pos positions_libres;
+
+void afficher_matrice()
+{
+    /* Cette fonction affiche la matrice */
+
+    int i;
+    int j;
+
+    printf(" _____\n");
+    for(i = 0 ; i < 3 ; i++)
+    {
+        printf("|");
+        for(j = 0 ; j < 3 ; j++)
+        {
+            printf("%c|",plateau[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+void chercher_place_libre()
+{
+    /* Cette fonction cherche
+       une place libre dans la matrice
+    */
+
+    int i;
+    int j;
+    int choix;
+    nb_place_libre = 0;
+
+    for(i = 0 ; i < 3 ; i++)
+    {
+        for(j = 0 ; j < 3 ; j++)
+        {
+            if(plateau[i][j] == '_')
+            {
+                positions_libres[nb_place_libre].absc = i;
+                positions_libres[nb_place_libre].ord = j;
+                nb_place_libre++;
+            }
+        }
+    }
+
+    choix = rand(0,nb_place_libre - 1);
+    x = positions_libres[choix].absc;
+    y = positions_libres[choix].ord;
+}
+
+void jouer_ia()
+{
+    /* Jouer l'IA */
+
+    chercher_place_libre();
+    printf("Je joue en (%i;%i)\n",x,y);
+    plateau[x][y] = 'O';
+}
+
+void initialiser_tab()
+{
+    /* Cette fonction initialise
+       la matrice
+    */
+
+    int i;
+    int j;
+
+    for(i = 0 ; i < 3 ; i++)
+    {
+        for(j = 0 ; j < 3 ; j++)
+        {
+            plateau[i][j] = '_';
+        }
+    }
+}
+
+bool est_valide(int choixX , int choixY)
+{
+    if((choixX < 0) || (2 < choixX))
+    {
+        return false;
+    }
+    if((choixY < 0) || (2 < choixY))
+    {
+        return false;
+    }
+
+    if(plateau[choixX][choixY] != '_')
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool est_finie()
+{
+    /* Renvoit vraie la partie
+       est finie */
+
+    int i;
+    int j;
+    bool finie;
+    char c;
+
+    for(i = 0 ; i < 3 ; i++) // Test colonnes
+    {
+        if((plateau[i][0] == plateau[i][1]) &&
+           (plateau[i][0] == plateau[i][2]) &&
+           (plateau[i][0] != '_'))
+        {
+            if(plateau[i][0] == 'X')
+            {
+                printf("Vous avez gagné !\n");
+            }
+            else
+            {
+                printf("Vous avez perdu !\n");
+            }
+            return true;
+        }
+    }
+    for(j = 0 ; j < 3 ; j++) // Test lignes
+    {
+        if((plateau[0][j] == plateau[1][j]) &&
+           (plateau[0][j] == plateau[2][j]) &&
+           (plateau[0][j] != '_'))
+        {
+            if(plateau[0][j] == 'X')
+            {
+                printf("Vous avez gagné !\n");
+            }
+            else
+            {
+                printf("Vous avez perdu !\n");
+            }
+            return true;
+        }
+    }
+
+    if((plateau[0][0] == plateau[1][1]) && 
+       (plateau[0][0] == plateau[2][2]) &&
+       (plateau[0][0] != '_')) // Diagonales NO-SE
+    {
+        if(plateau[0][0] == 'X')
+        {
+            printf("Vous avez gagné !\n");
+        }
+        else
+        {
+            printf("Vous avez perdu !\n");
+        }
+        return true;
+    }
+
+    if((plateau[0][2] == plateau[1][1]) && 
+       (plateau[0][2] == plateau[2][0]) &&
+       (plateau[0][2] != '_')) // Diagonales NE-SO
+    {
+        if(plateau[0][2] == 'X')
+        {
+            printf("Vous avez gagné !\n");
+        }
+        else
+        {
+            printf("Vous avez perdu !\n");
+        }
+        return true;
+    }
+
+    return false;
+}
+
+main()
+{
+    bool finie;
+    int choixX;
+    int choixY;
+
+    initialiser_tab();
+
+    printf("Vous jouez les 'X'\n");
+    afficher_matrice();
+
+    finie = false;
+    
+    while(true)
+    {
+        choixX = -1;
+        choixY = -1;
+        while(!est_valide(choixX,choixY))
+        {
+            printf("Entrez une position :\nX : ");
+            scanf("%i",choixX);
+            printf("Y : ");
+            scanf("%i",choixY);
+        }
+
+        plateau[choixX][choixY] = 'X';
+        afficher_matrice();
+
+        finie = est_finie();
+        if(finie)
+        {
+            return 0;
+        }
+        
+        jouer_ia();
+        afficher_matrice();
+
+        finie = est_finie();
+        if(finie)
+        {
+            return 0;
+        }
+    }
+}
+    

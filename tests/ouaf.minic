@@ -1,0 +1,26 @@
+int f(int x) {
+    return x + 1;
+}
+
+void my_sleep(int x) {
+     sleep(x);
+}
+
+main() {
+    int i;
+    int n;
+    char c;
+
+    c = 'H'-'A';
+
+    n = rand(2, 10);
+
+    for(i = 0; i < n; i++)
+    {
+        printf("Ouaf!%c\n", c);
+
+        if(i < (n - 1)){
+             my_sleep(f(f(-2)) + 1);
+        }
+    }
+}

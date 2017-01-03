@@ -1,0 +1,42 @@
+main()
+{
+    typedef int array tab[500];
+    bool touche;
+    int tmp;
+    int dim;
+    tab t;
+    int n;
+
+    printf("Nombre de valeurs a trier : ");
+    scanf("%i" , dim);
+    
+    for(n = 0 ; n < dim ; n++) // Remplissage tableau
+    {
+        printf("\tEntrez t[%i] : ",n);
+        scanf("%i",t[n]);
+    }
+
+    touche = true;
+
+    while(touche) // Tri a bulles
+    {
+        touche = false;
+        for(n = 0 ; n < dim - 1 ; n++)
+        {
+            if(t[n] > t[n + 1])
+            {
+                tmp = t[n];
+                t[n] = t[n + 1];
+                t[n + 1] = tmp;
+                touche = true;
+            }
+        }
+    }
+
+    printf("\nTableau trié : \n"); // Affichage tableau
+    for(n = 0 ; n < dim ; n++)
+    {
+        printf("%i ",t[n]);
+    }
+    printf("\n");
+}

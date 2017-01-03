@@ -1,0 +1,41 @@
+int fib(int n)
+{
+    int tmp;
+    int f0;
+    int f1;
+    
+    f0 = 0;
+    f1 = 1;
+
+    
+    if(n < 0)
+    {
+        printf("Erreur, la suite n'est pas definie pour des entiers negatifs\n");
+        return -1;
+    }
+    
+    printf("Suite de Fibonacci jusqu'au rang F(%i) : ", n);
+    while(n)
+    {
+        printf("%i ",f0);
+        n--;
+        tmp = f1 + f0;
+        f0 = f1;
+        f1 = tmp;
+    }
+    
+    printf("\n");
+    
+    return f0;
+}
+
+main()
+{
+    int n;
+    int f;
+    
+    printf("Entrez n : ");
+    scanf("%i" , n);
+
+    fib(n);
+}

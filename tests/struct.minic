@@ -1,0 +1,57 @@
+typedef int array tab1 [5];
+typedef int array tab2 [2][2][2];
+
+typedef struct s1 {
+    int a;
+    int b;
+};
+
+typedef struct s2 {
+    int x;
+    tab1 t;
+};
+
+typedef struct s3 {
+    s1 aa;
+    s2 bb;
+    tab2 tt;
+};
+
+typedef s3 array tab_s3 [4][4];
+
+typedef struct s4 {
+    tab_s3 alpha;
+    char beta;
+};
+
+typedef struct s5 {
+    s4 lol;
+    float mdr;
+};
+
+main() {
+    s1 test1;
+    s2 test2;
+    s3 test3;
+
+    int i;
+
+    test1.a = 123;
+    test1.b = 2 * test1.a;
+
+    printf("test1: %i, %i\n", test1.a, test1.b);
+
+    test2.x = 999;
+    for(i = 0; i < 5; i++){
+        test2.t[i] = 1000 + i;
+    }
+
+    printf("test2: %i, [ ", test2.x);
+    for(i = 0; i < 5; i++){
+        printf("%i ", test2.t[i]);
+    }
+    printf("]\n");
+
+    test3.aa = test1;
+    //test3.bb = test2;
+}
