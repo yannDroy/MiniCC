@@ -3,7 +3,7 @@ OPTIONS = -Wall -O3 -g
 MATH = -lm
 
 MiniCC : y.tab.c lex.yy.o association.o table_lexicographique.o table_description_types.o table_declarations.o arbre_binaire.o pile_regions.o  table_regions.o pile_execution.o machine_virtuelle.o controle_types.o
-	$(CC) $(OPTIONS) y.tab.c association.o table_lexicographique.o table_description_types.o table_declarations.o arbre_binaire.o pile_regions.o table_regions.o pile_execution.o machine_virtuelle.o controle_types.o lex.yy.o -ly -ll -o MiniCC $(MATH)
+	$(CC) $(OPTIONS) y.tab.c association.o table_lexicographique.o table_description_types.o table_declarations.o arbre_binaire.o pile_regions.o table_regions.o pile_execution.o machine_virtuelle.o controle_types.o lex.yy.o -lfl -o MiniCC $(MATH)
 
 
 y.tab.c : grammar/a_syntaxique.y
